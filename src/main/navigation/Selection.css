@@ -1,0 +1,12 @@
+.selection {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+}
+
+.selection labe
+}
+
+.selection select {
+    max-width: 150px;
+}
