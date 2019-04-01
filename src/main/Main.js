@@ -1,12 +1,13 @@
 import React from "react";
 import "./Main.css";
+import {GenreContext, details} from './movie-context';
 
 import Navigation from './navigation/Navigation'
 import Movies from './movies/Movies'
 
 class Main extends React.Component {
     state = {
-        genre: 'Comedy',
+        genre: details.genre,
         genres: [],
         year: {
             label: "year",
@@ -167,13 +168,14 @@ class Main extends React.Component {
     render() {
         return (
             <section className="main">
-                <Navigation
-                    onChange={this.onChange}
-                    onGenreChange={this.onGenreChange}
-                    setGenres={this.setGenres}
-                    onSearchButtonClick={this.onSearchButtonClick}
-                    {...this.state}
-                />
+                <GenreContext.Provider value={{genre: this.state.genre, onGenreChange: this.onGenreChange}}>
+                    <Navigation
+                        onChange={this.onChange}
+                        setGenres={this.setGenres}
+                        onSearchButtonClick={this.onSearchButtonClick}
+                        {...this.state}
+                    />
+                </GenreContext.Provider>
                 <Movies movies={this.state.movies}
                         page={this.state.page}
                         totalPages={this.state.totalPages}
